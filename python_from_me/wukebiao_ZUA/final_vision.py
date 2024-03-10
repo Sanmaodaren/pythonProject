@@ -47,7 +47,7 @@ def judge_part(x):
                     set_weeks_one_cell.add(x)
 
 def write_at_once():
-    """一次性写入全部数据，传入两个字典"""
+    """一次性写入全部数据"""
     global dic_weeks_all_cols
     set_week20 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
     wb = xlwt.Workbook(encoding='utf-8')
@@ -77,7 +77,6 @@ def write_at_once():
             for x in week_cell_list:
                 sheet = wb.get_sheet(f'sheet{x}')
                 sheet.write(int(week_b), int(xq), '陆金泽')
-    # wb.save('无课表.xls')
     workbook = xlrd.open_workbook('yanshun.xls', formatting_info=True)
     worksheet = workbook.sheet_by_name('sheet1')
     get_info_from_old_excel(worksheet)
@@ -117,7 +116,7 @@ def write_at_once():
             for x in week_cell_list:
                 sheet = wb.get_sheet(f'sheet{x}')
                 sheet.write(int(week_b)+3, int(xq), '杨建')
-    wb.save('vision2.xls')
+    wb.save('无课表.xls')
 def get_info_from_old_excel(x):
     """从excel单元格里获取信息，两个字典嵌套储存行和列"""
     global dic_weeks_all_cols
@@ -129,13 +128,7 @@ def get_info_from_old_excel(x):
             judge_part(value)
             dic_weeks_one_col[int(row * 2 - 6)] = set_weeks_one_cell
         dic_weeks_all_cols[col] = dic_weeks_one_col
-def define_style():
-    alignment = xlwt.Alignment()
-    alignment.horz = 0x02
-    alignment.vert = 0x01
-    my_style = xlwt.XFStyle
-    my_style.alignment = alignment
-    return my_style
+
 
 if __name__ == '__main__':
     write_at_once()
