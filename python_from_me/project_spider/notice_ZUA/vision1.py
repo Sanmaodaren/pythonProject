@@ -32,7 +32,7 @@ def get_info(url):
 def judge_part(mydata):
     """根据日期判断是否推送"""
     date_today = datetime.date.today()
-    yesterday = date_today - datetime.timedelta(days=1)
+    yesterday = date_today - datetime.timedelta(days=3)
     title_date = mydata["date"]
     time1 = datetime.datetime.strptime(str(yesterday), "%Y-%m-%d")
     time2 = datetime.datetime.strptime(str(title_date), "%Y-%m-%d")
@@ -70,7 +70,7 @@ tokens = ['48YMrNu8g32XNNtDIhseqQ7NU']
 tokens.append('x3sOMNv9OxZHldsRrmLSlvRUO')  # 严圣淇
 base_url = 'https://sczx.zua.edu.cn/index/jstz.htm'
 my_datas = get_info(base_url)
-schedule.every().day.at("10:30").do(execute)
+schedule.every().day.at("07:24").do(execute)
 try:
     while True:
         schedule.run_pending()
